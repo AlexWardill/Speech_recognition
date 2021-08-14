@@ -2,10 +2,10 @@ var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogniti
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-const result = document.querySelector('#result');
+const output = document.querySelector('#output');
 const body = document.querySelector('body');
 
-console.log(new SpeechRecognition());
+var recognition = new SpeechRecognition();
 
 recognition.continuous = false;
 recognition.lang = 'en-UK';
@@ -19,13 +19,16 @@ body.addEventListener('click', function() {
 });
 
 
-recognition.onresult = (e) => {
-    console.log(results);
+recognition.onresult = (result) => {
+    let speechOutput = result.results[0][0].transcript;
+    body.style.background = speechOutput;
+    output.innerText = `You chose the background as: ${speechOutput}`;
 }
 
 
 recognition.onspeechend = function() {
     recognition.stop();
+    console.log('Recognition has stopped');
   }
   //error handling
   recognition.onnomatch = function(event) {

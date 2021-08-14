@@ -1,7 +1,8 @@
 Color recognition
 
-- Initialise recognition
-- handle errors (unsupported feature)
+FIREFOX DOES NOT SUPPORT THIS
+
+-* handle errors (unsupported feature)
 
 - start recognition
 - return result[0][0].transcript
