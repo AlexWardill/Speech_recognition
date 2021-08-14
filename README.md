@@ -1,4 +1,4 @@
-Live Demo](https://alexwardill.github.io/Speech_recognition/
+[Live Demo](https://alexwardill.github.io/Speech_recognition/)
 Color recognition
 
 FIREFOX DOES NOT SUPPORT THIS
