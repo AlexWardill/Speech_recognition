@@ -1,18 +1,27 @@
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
 const result = document.querySelector('#result');
 const body = document.querySelector('body');
 
-if (SpeechRecognition !== undefined) {
-    let recognition = new SpeechRecognition();
-  } else {
-    console.warn('sorry not supported 😭');
-  }
+console.log(new SpeechRecognition());
+
+recognition.continuous = false;
+recognition.lang = 'en-UK';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
 
 body.addEventListener('click', function() {
     recognition.start();
     console.log('Recognition has started');
 });
+
+
+recognition.onresult = (e) => {
+    console.log(results);
+}
 
 
 recognition.onspeechend = function() {
