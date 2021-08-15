@@ -54,4 +54,12 @@ recognition.onspeechend = function() {
   }
 
 
-  
+    // Box shadow
+
+    body.addEventListener('mousemove', changeShadow);
+
+
+    function changeShadow(e) {
+      let { offsetX : x, offsetY: y } = e;
+      console.log(x, y);
+    }
