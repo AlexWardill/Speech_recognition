@@ -59,7 +59,23 @@ recognition.onspeechend = function() {
     body.addEventListener('mousemove', changeShadow);
 
 
+    const walk = 40;
+
     function changeShadow(e) {
-      let { offsetX : x, offsetY: y } = e;
-      console.log(x, y);
+      const [width, height] = [header.offsetWidth, header.offsetHeight + 220];
+      let [x, y] =[e.offsetX, e.offsetY];
+      
+      if (e.target != this) {
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      } 
+      const xWalk = (x / width * walk) - (walk / 2);
+      const yWalk = (y / height * walk) - (walk / 2);
+      console.log(xWalk, yWalk);
+
+      header.style.textShadow = `${xWalk}px ${yWalk}px 0px aqua, 
+      ${xWalk * -1.2}px ${yWalk * -1.2}px 0px red,
+      ${xWalk * -2}px ${yWalk}px 0px rgb(23, 250, 23)`;
     }
+
+  
