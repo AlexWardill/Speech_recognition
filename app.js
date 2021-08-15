@@ -28,6 +28,7 @@ recognition.maxAlternatives = 1;
 
 body.addEventListener('click', function() {
     recognition.start();
+    output.innerText = 'Listening...';
     console.log('Recognition has started');
 });
 
@@ -54,28 +55,26 @@ recognition.onspeechend = function() {
   }
 
 
-    // Box shadow
+// Box shadow
 
-    body.addEventListener('mousemove', changeShadow);
+body.addEventListener('mousemove', changeShadow);
 
 
-    const walk = 40;
+const walk = 10;
 
-    function changeShadow(e) {
-      const [width, height] = [header.offsetWidth, header.offsetHeight + 220];
-      let [x, y] =[e.offsetX, e.offsetY];
-      
-      if (e.target != this) {
-        x = x + e.target.offsetLeft;
-        y = y + e.target.offsetTop;
-      } 
-      const xWalk = (x / width * walk) - (walk / 2);
-      const yWalk = (y / height * walk) - (walk / 2);
-      console.log(xWalk, yWalk);
-
-      header.style.textShadow = `${xWalk}px ${yWalk}px 0px aqua, 
-      ${xWalk * -1.2}px ${yWalk * -1.2}px 0px red,
-      ${xWalk * -2}px ${yWalk}px 0px rgb(23, 250, 23)`;
-    }
+function changeShadow(e) {
+  const [width, height] = [header.offsetWidth, header.offsetHeight + 220];
+  let [x, y] =[e.offsetX, e.offsetY];
+  
+  if (e.target != this) {
+    x = x + e.target.offsetLeft;
+    y = y + e.target.offsetTop;
+  } 
+  const xWalk = (x / width * walk) - (walk / 2);
+  const yWalk = (y / height * walk) - (walk / 2);
+  header.style.textShadow = `${xWalk}px ${yWalk}px 0px aqua, 
+  ${xWalk * -1.2}px ${yWalk * -1.2}px 0px red,
+  ${xWalk * -2}px ${yWalk}px 0px rgb(23, 250, 23)`;
+}
 
   
