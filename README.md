@@ -2,11 +2,11 @@ Color recognition
 
 FIREFOX DOES NOT SUPPORT THIS
 
--* handle errors (unsupported feature)
+✅ handle errors (unsupported feature)
 
-- start recognition
-- return result[0][0].transcript
-    - alternativeResult = 1
+✅ start recognition
+✅  return result[0][0].transcript
+    ✅  alternativeResult = 1
 - if no color detected (err) display, "sorry I couldn't understand that"
 
 

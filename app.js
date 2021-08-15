@@ -1,11 +1,24 @@
-var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-
 const output = document.querySelector('#output');
 const body = document.querySelector('body');
 
-var recognition = new SpeechRecognition();
+try {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+  var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+  var recognition = new SpeechRecognition();
+}
+catch (TypeError) {
+  output.innerText = "Sorry but this feature is not supported in your browser...";
+} 
+try {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+  var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+  var recognition = new SpeechRecognition();
+}
+catch (ReferenceError) {
+  output.innerText = "Sorry but this feature is not supported in your browser...";
+}
 
 recognition.continuous = false;
 recognition.lang = 'en-UK';
@@ -32,9 +45,13 @@ recognition.onspeechend = function() {
   }
   //error handling
   recognition.onnomatch = function(event) {
-    diagnostic.textContent = "I didn't recognise that color.";
+    console.log('what on earth did you just say');
+    output.innerText = "I didn't recognise that color.";
   }
   
   recognition.onerror = function(event) {
-    diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+    output.innerText = 'Error occurred in recognition: ' + event.error;
   }
+
+
+  
