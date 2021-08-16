@@ -1,6 +1,9 @@
 const output = document.querySelector('#output');
 const body = document.querySelector('body');
 
+const DEFAULT_OUTPUT_TEXT = 'Click the screen to start'
+output.innerText = DEFAULT_OUTPUT_TEXT;
+
 try {
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
@@ -25,11 +28,23 @@ recognition.lang = 'en-UK';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
+let isSpeechStart = false;
 
 body.addEventListener('click', function() {
+  if (!isSpeechStart) {
+    
     recognition.start();
+    isSpeechStart = true;
     output.innerText = 'Listening...';
     console.log('Recognition has started');
+  }   
+  
+  else if (isSpeechStart) {
+      isSpeechStart = false;
+      recognition.stop();
+      console.log('Recognition stopped');
+      output.innerText = DEFAULT_OUTPUT_TEXT;
+    }
 });
 
 
@@ -77,4 +92,31 @@ function changeShadow(e) {
   ${xWalk * -2}px ${yWalk}px 0px rgb(23, 250, 23)`;
 }
 
-  
+// Konami code
+const sequence = [];
+const code = 'alex';
+
+document.addEventListener('keypress', (e) => {
+  pushCode(e);
+  checkCode();
+});
+
+function pushCode(e) {
+  sequence.push(e.key);
+  if (sequence.length > 4) {
+    sequence.shift();
+  }
+  console.log(sequence);
+}
+
+function checkCode() {
+  if (sequence.join('') == code) {
+    body.style.backgroundImage = "url('imgs/unicorn.jpg')";
+    body.style.backgroundPosition = 'center';
+    body.style.backgroundRepeat = 'no-repeat';
+    body.style.backgroundSize = 'cover';
+  } else {
+    body.style.backgroundImage = 'none';
+  }
+}
+
